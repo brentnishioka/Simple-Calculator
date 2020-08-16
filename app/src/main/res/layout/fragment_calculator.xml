@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="calculatorViewModel"
+            type="com.example.simplecalculator.calculator.CalculatorViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#43464b">
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:hint="@string/result_text"
+            android:text="@{calculatorViewModel.result}"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.Numbers"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/divide_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/clear_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.clearResult()}"
+            android:text="@string/clear_text"
+            app:layout_constraintBottom_toTopOf="@+id/seven_button"
+            app:layout_constraintEnd_toStartOf="@+id/pos_neg_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result" />
+
+        <Button
+            android:id="@+id/pos_neg_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.posNegResult()}"
+            android:text="@string/pos_neg_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/clear_button"
+            app:layout_constraintEnd_toStartOf="@+id/percent_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/clear_button" />
+
+        <Button
+            android:id="@+id/percent_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.percentOfResult()}"
+            android:text="@string/percent_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/clear_button"
+            app:layout_constraintEnd_toStartOf="@+id/divide_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pos_neg_button" />
+
+        <Button
+            android:id="@+id/divide_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('/')}"
+            android:text="@string/divide_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/clear_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/percent_button" />
+
+        <Button
+            android:id="@+id/seven_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('7')}"
+            android:text="@string/seven_text"
+            app:layout_constraintBottom_toTopOf="@+id/four_button"
+            app:layout_constraintEnd_toStartOf="@+id/eight_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clear_button" />
+
+        <Button
+            android:id="@+id/multiply_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('*')}"
+            android:text="@string/multiply_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/seven_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/nine_button" />
+
+        <Button
+            android:id="@+id/eight_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('8')}"
+            android:text="@string/eight_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/seven_button"
+            app:layout_constraintEnd_toStartOf="@+id/nine_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/seven_button" />
+
+        <Button
+            android:id="@+id/nine_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('9')}"
+            android:text="@string/nine_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/seven_button"
+            app:layout_constraintEnd_toStartOf="@+id/multiply_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/eight_button" />
+
+        <Button
+            android:id="@+id/four_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('4')}"
+            android:text="@string/four_text"
+            app:layout_constraintBottom_toTopOf="@+id/one_button"
+            app:layout_constraintEnd_toStartOf="@+id/five_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seven_button" />
+
+        <Button
+            android:id="@+id/six_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('6')}"
+            android:text="@string/six_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/four_button"
+            app:layout_constraintEnd_toStartOf="@+id/subtract_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/five_button" />
+
+        <Button
+            android:id="@+id/subtract_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('-')}"
+            android:text="@string/subtract_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/four_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/six_button" />
+
+        <Button
+            android:id="@+id/five_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('5')}"
+            android:text="@string/five_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/four_button"
+            app:layout_constraintEnd_toStartOf="@+id/six_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/four_button" />
+
+        <Button
+            android:id="@+id/one_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('1')}"
+            android:text="@string/one_text"
+            app:layout_constraintBottom_toTopOf="@+id/zero_button"
+            app:layout_constraintEnd_toStartOf="@+id/two_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/four_button" />
+
+        <Button
+            android:id="@+id/three_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('3')}"
+            android:text="@string/three_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/one_button"
+            app:layout_constraintEnd_toStartOf="@+id/add_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/two_button" />
+
+        <Button
+            android:id="@+id/add_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('+')}"
+            android:text="@string/plus_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/one_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/three_button" />
+
+        <Button
+            android:id="@+id/two_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('2')}"
+            android:text="@string/two_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/one_button"
+            app:layout_constraintEnd_toStartOf="@+id/three_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/one_button" />
+
+        <Button
+            android:id="@+id/zero_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('0')}"
+            android:text="@string/zero_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dot_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/one_button" />
+
+        <Button
+            android:id="@+id/equal_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/equal_text"
+            android:onClick="@{() -> calculatorViewModel.calculateResult()}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/zero_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/dot_button" />
+
+        <Button
+            android:id="@+id/dot_button"
+            style="@style/numberButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> calculatorViewModel.parseEntryToString('.')}"
+            android:text="@string/dot_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/zero_button"
+            app:layout_constraintEnd_toStartOf="@+id/equal_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/zero_button" />
+
+        <ImageView
+            android:id="@+id/backspace_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> calculatorViewModel.onBackspaceClicked()}"
+            android:visibility="@{safeUnbox(calculatorViewModel.backSpaceButtonShown)? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_backspace_24"
+            tools:ignore="VectorDrawableCompat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
